@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>DocumentFragment</title>
+</head>
+<body>
+    <!-- DocumentFragment(文档片段)可以看作节点容器，它可以包含多个子节点，当我们将它插入到DOM中
+    时，只有它的子节点会插入目标节点，所以把它看作一组节点的容器。使用DocumentFragment处理节点
+    速度和性能远远优于直接操作DOM。Vue进行编译时，就是将挂在目标的所有子节点劫持(真的是劫持，通过append的方法，
+    DOM中的节点会被自动删除)到DocumentFragment中，经过一番处理后，在将DocumentFragment整体返回插入挂载目标。 -->
+    <div id="app">
+      <input type="text" id="a">
+      <span id="b"></span>
+    </div>
+    <script>
+      var dom = nodeToFragment(document.getElementById('app'))
+      console.log(dom)
+      function nodeToFragment (node) {
+        var flag = document.createDocumentFragment();
+        var child;
+        while(child = node.firstChild) {
+          flag.append(child); // 劫持node的所有子节点
+        }
+        return flag;
+      }
+      document.getElementById('app').appendChild(dom) //返回到APP中
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <input type="text" v-model="text"> {{text}}
+  </div>
+
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        text: 'hello world'
+      }
+    })
+  </script>
+首先将该任务分成几个子任务：
+  1.输入框以及文本节点与data中的数据绑定
+  2.输入框内容变化时，data中的数据同步变化。即view => model 的变化
+  3.data中的数据变化时，文本节点的内容同步变化。即model => view
+
+</body>
+</html>
